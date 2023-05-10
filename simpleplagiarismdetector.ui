@@ -158,7 +158,7 @@ p, li { white-space: pre-wrap; }
      </rect>
     </property>
     <property name="text">
-     <string>C:/Users/Jay/Documents/SimplePlagiarismDetector/Plagiarized.txt</string>
+     <string>C:/Users/Jay/Documents/SimplePlagiarismDetector/</string>
     </property>
     <property name="placeholderText">
      <string>Enter document path</string>

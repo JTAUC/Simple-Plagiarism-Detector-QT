@@ -70,7 +70,7 @@ void SimplePlagiarismDetector::on_start_clicked()
 {
     QString s = ui->lineEdit->text();
     string path = s.toStdString();
-    Document Plagiarized(path);
+    Document Plagiarized(path + "Plagiarized.txt");
 
     if (!Plagiarized.exists){
         cout << "DOC doesnt exist!" << endl;
@@ -103,11 +103,11 @@ void SimplePlagiarismDetector::on_start_clicked()
 
     ui->DocumentName->setText(QString::fromStdString(Plagiarized.getFileName()));
 
-    corpus.push_back(Document("Doc1.txt"));
-    corpus.push_back(Document("Doc2.txt"));
-    corpus.push_back(Document("Doc3.txt"));
-    corpus.push_back(Document("Doc4.txt"));
-    corpus.push_back(Document("Doc5.txt"));
+    corpus.push_back(Document(path + "Doc1.txt"));
+    corpus.push_back(Document(path + "Doc2.txt"));
+    corpus.push_back(Document(path + "Doc3.txt"));
+    corpus.push_back(Document(path + "Doc4.txt"));
+    corpus.push_back(Document(path + "Doc5.txt"));
 
     vector<string> sentences = Plagiarized.getSentences();
 

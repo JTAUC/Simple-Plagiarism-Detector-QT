@@ -1,10 +1,5 @@
 <RCC>
     <qresource prefix="/Files">
-        <file>Corpus/Doc1.txt</file>
-        <file>Corpus/Doc2.txt</file>
-        <file>Corpus/Doc3.txt</file>
-        <file>Corpus/Doc4.txt</file>
-        <file>Corpus/Doc5.txt</file>
         <file>Plagiarized.txt</file>
     </qresource>
 </RCC>
