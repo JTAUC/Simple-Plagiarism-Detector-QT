@@ -103,11 +103,11 @@ void SimplePlagiarismDetector::on_start_clicked()
 
     ui->DocumentName->setText(QString::fromStdString(Plagiarized.getFileName()));
 
-    corpus.push_back(Document("C:/Users/Jay/Documents/SimplePlagiarismDetector/Corpus/Doc1.txt"));
-    corpus.push_back(Document("C:/Users/Jay/Documents/SimplePlagiarismDetector/Corpus/Doc2.txt"));
-    corpus.push_back(Document("C:/Users/Jay/Documents/SimplePlagiarismDetector/Corpus/Doc3.txt"));
-    corpus.push_back(Document("C:/Users/Jay/Documents/SimplePlagiarismDetector/Corpus/Doc4.txt"));
-    corpus.push_back(Document("C:/Users/Jay/Documents/SimplePlagiarismDetector/Corpus/Doc5.txt"));
+    corpus.push_back(Document("Doc1.txt"));
+    corpus.push_back(Document("Doc2.txt"));
+    corpus.push_back(Document("Doc3.txt"));
+    corpus.push_back(Document("Doc4.txt"));
+    corpus.push_back(Document("Doc5.txt"));
 
     vector<string> sentences = Plagiarized.getSentences();
 
