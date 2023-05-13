@@ -5,6 +5,6 @@
 class RabinKarp
 {
 public:
-	bool runDetection(string doc, string subString, int& index);
+    bool runDetection(string doc, string subString, int& index);
 };
 

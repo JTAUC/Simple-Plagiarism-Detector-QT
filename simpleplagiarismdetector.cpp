@@ -30,8 +30,8 @@ float BF_PlagiarizedCharCount = 0, RK_PlagiarizedCharCount = 0;
 
 float SimplePlagiarismDetector::GetHammingDistances(vector<string> s1, vector<string> s2) {
     int commonCharacters = 0, c = 0;
-    for (int i = 0; i < static_cast<int>(s1.size()); i++) {
-        for (int j = 0; j < static_cast<int>(s2.size()); j++) {
+    for (int i = 0; i < s1.size(); i++) {
+        for (int j = 0; j < s2.size(); j++) {
             if (BFMatcher.HammingDistance(s1[i], s2[j], c) <= 5) {
                 commonCharacters += c;
             }
@@ -46,7 +46,7 @@ void SimplePlagiarismDetector::BruteForce(Document d1, Document d2) {
 
     cout << "Hamming Distance: " << (GetHammingDistances(d1_sentences, d2_sentences) / d1.getFullText().length()) * 100 << endl;
 
-    for (int i = 0; i < static_cast<int>(d2.getSentences().size()); i++) { //Sentence Matching
+    for (int i = 0; i < d2.getSentences().size(); i++) { //Sentence Matching
         int index = BFMatcher.runDetection(d1, d2_sentences[i]);
         if (index != -1) {
             BF_exact_matches.push_back(Match(i, index, d2_sentences[i], d1.getFileName()));
@@ -57,11 +57,13 @@ void SimplePlagiarismDetector::BruteForce(Document d1, Document d2) {
 
 void SimplePlagiarismDetector::RabinKarpFunc(Document d1, Document d2) {
     vector<string> d1_sentences = d1.getSentences(), d2_sentences = d2.getSentences();
-    for (int i = 0; i < static_cast<int>(d2.getSentences().size()); i++) { //Sentence Matching
-        int index = 0;
-        if (RabinKarpMatcher.runDetection(d1.getFullText(), d2_sentences[i], index)) {
-            RK_exact_matches.push_back(Match(i, index, d2_sentences[i], d1.getFileName()));
-            RK_PlagiarizedCharCount += d2_sentences[i].length();
+    int index = 0;
+
+    for (int i = 0; i < d1.getSentences().size(); i++) { //Sentence Matching
+        cout << d1_sentences[i] << endl;
+        if (RabinKarpMatcher.runDetection(d1_sentences[i], d2.getFullText(), index)) {
+            RK_exact_matches.push_back(Match(i, index, d1_sentences[i], d2.getFileName()));
+            RK_PlagiarizedCharCount += d1_sentences[i].length();
         }
     }
 }
