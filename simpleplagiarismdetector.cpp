@@ -78,17 +78,13 @@ void SimplePlagiarismDetector::on_start_clicked()
         cout << "DOC doesnt exist!" << endl;
         return;
     }
-    if (!ui->checkBox->isChecked() && !ui->checkBox_2->isChecked()){
-        return;
-    }
 
     ui->TextBody->setVisible(true);
     ui->reset->setVisible(true);
     ui->DocumentName->setVisible(true);
     ui->progressBar->setVisible(true);
     ui->lineEdit->setVisible(false);
-    ui->checkBox_2->setVisible(false);
-    ui->checkBox->setVisible(false);
+    ui->comboBox->setVisible(false);
     ui->start->setVisible(false);
     ui->textEdit->setVisible(false);
 
@@ -114,16 +110,19 @@ void SimplePlagiarismDetector::on_start_clicked()
     vector<string> sentences = Plagiarized.getSentences();
 
     for (int i = 0; i < static_cast<int>(corpus.size()); i++) {
-        if (ui->checkBox->isChecked())
+        if (ui->comboBox->currentIndex() == 0)
             RabinKarpFunc(Plagiarized, corpus[i]);
-        if (ui->checkBox_2->isChecked())
+        else
             BruteForce(corpus[i], Plagiarized);
     }
 
     RK_plagiarismPercentage = (RK_PlagiarizedCharCount / totalCharCount) * 100;
     BF_plagiarismPercentage = (BF_PlagiarizedCharCount / totalCharCount) * 100;
 
-    avgPlagiarism = (RK_plagiarismPercentage + BF_plagiarismPercentage) / 2;
+    if (ui->comboBox->currentIndex() == 0)
+        avgPlagiarism = RK_plagiarismPercentage;
+    else
+        avgPlagiarism = BF_plagiarismPercentage;
 
     cout << "Total Plagiarism Detected: " << avgPlagiarism << "%" << endl;
 
@@ -158,8 +157,7 @@ void SimplePlagiarismDetector::on_reset_clicked()
     ui->DocumentName->setVisible(false);
     ui->progressBar->setVisible(false);
     ui->lineEdit->setVisible(true);
-    ui->checkBox_2->setVisible(true);
-    ui->checkBox->setVisible(true);
+    ui->comboBox->setVisible(true);
     ui->start->setVisible(true);
     ui->textEdit->setVisible(true);
 }
